@@ -1,4 +1,3 @@
-// adastra.hpp
 #ifndef ADASTRA_HPP
 #define ADASTRA_HPP
 
@@ -82,8 +81,46 @@ namespace Adastra
         }
     }
 
-    void hello(const std::string &name);
-    int sum(int a, int b);
+    template <typename T>
+    bool linearSearch(const std::vector<T> &v, int target)
+    {
+        for (T i = 0; i < v.size(); i++)
+        {
+            if (v[i] == i)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    template <typename T>
+    void selectionSort(std::vector<T> &v)
+    {
+        int i, j, mid_index;
+
+        // Parcours chaque element du tableau
+        for (i = 0; i < v.size() - 1; i++)
+        {
+            mid_index = i; // supposons que l'element courant est le plus petit
+
+            // Chercher l'element le plus petit dans la partie non triee
+            for (j = i + 1; j < v.size(); j++)
+            {
+                if (v[j] < v[mid_index])
+                {
+                    // Mise a jour de l'indice de l'element le plus petit
+                    mid_index = j;
+                }
+            }
+
+            // Si l'element minimal n'est pas deja a la position correcte, echanger
+            if (mid_index != i)
+            {
+                std::swap(v[i], v[mid_index]);
+            }
+        }
+    }
 };
 
 #endif // ADASTRA_HPP
